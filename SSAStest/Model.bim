@@ -681,6 +681,7 @@
       },
       {
         "name": "DimDate",
+        "dataCategory": "Time",
         "columns": [
           {
             "type": "calculatedTableColumn",
@@ -688,6 +689,7 @@
             "dataType": "dateTime",
             "isNameInferred": true,
             "isDataTypeInferred": true,
+            "isKey": true,
             "sourceColumn": "[Date]"
           },
           {
@@ -733,46 +735,224 @@
         ]
       },
       {
-        "name": "Sheet1",
+        "name": "DimEmployee",
         "columns": [
           {
-            "name": "A/C",
-            "dataType": "double",
-            "sourceColumn": "A/C",
-            "sourceProviderType": "Double"
+            "name": "EmployeeKey",
+            "dataType": "int64",
+            "sourceColumn": "EmployeeKey",
+            "sourceProviderType": "Integer"
           },
           {
-            "name": "State",
+            "name": "ParentEmployeeKey",
+            "dataType": "int64",
+            "sourceColumn": "ParentEmployeeKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FirstName",
             "dataType": "string",
-            "sourceColumn": "State",
+            "sourceColumn": "FirstName",
             "sourceProviderType": "WChar"
           },
           {
-            "name": "Zone",
+            "name": "LastName",
             "dataType": "string",
-            "sourceColumn": "Zone",
+            "sourceColumn": "LastName",
             "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MiddleName",
+            "dataType": "string",
+            "sourceColumn": "MiddleName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "sourceColumn": "Title",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "HireDate",
+            "dataType": "dateTime",
+            "sourceColumn": "HireDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "BirthDate",
+            "dataType": "dateTime",
+            "sourceColumn": "BirthDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "EmailAddress",
+            "dataType": "string",
+            "sourceColumn": "EmailAddress",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Phone",
+            "dataType": "string",
+            "sourceColumn": "Phone",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MaritalStatus",
+            "dataType": "string",
+            "sourceColumn": "MaritalStatus",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "EmergencyContactName",
+            "dataType": "string",
+            "sourceColumn": "EmergencyContactName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "EmergencyContactPhone",
+            "dataType": "string",
+            "sourceColumn": "EmergencyContactPhone",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SalariedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "SalariedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "Gender",
+            "dataType": "string",
+            "sourceColumn": "Gender",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "PayFrequency",
+            "dataType": "int64",
+            "sourceColumn": "PayFrequency",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "BaseRate",
+            "dataType": "decimal",
+            "sourceColumn": "BaseRate",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "VacationHours",
+            "dataType": "int64",
+            "sourceColumn": "VacationHours",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "CurrentFlag",
+            "dataType": "boolean",
+            "sourceColumn": "CurrentFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "SalesPersonFlag",
+            "dataType": "boolean",
+            "sourceColumn": "SalesPersonFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "DepartmentName",
+            "dataType": "string",
+            "sourceColumn": "DepartmentName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "StartDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "EndDate",
+            "dataType": "dateTime",
+            "sourceColumn": "EndDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "Status",
+            "dataType": "string",
+            "sourceColumn": "Status",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ETLLoadID",
+            "dataType": "int64",
+            "sourceColumn": "ETLLoadID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LoadDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "UpdateDate",
+            "dataType": "dateTime",
+            "sourceColumn": "UpdateDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "type": "calculated",
+            "name": "EmployeePath",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "PATH ( DimEmployee[EmployeeKey], DimEmployee[ParentEmployeeKey] )"
+          },
+          {
+            "type": "calculated",
+            "name": "HierarchyDepth",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": " PATHLENGTH ( DimEmployee[EmployeePath] )"
           }
         ],
         "partitions": [
           {
-            "name": "Sheet1",
+            "name": "DimEmployee",
             "dataView": "full",
             "source": {
               "type": "query",
-              "query": " \t\t\t\tSELECT [Sheet1$].*   FROM [Sheet1$] ",
-              "dataSource": "Excel area_code_time_zone"
+              "query": " SELECT [dbo].[DimEmployee].* FROM [dbo].[DimEmployee] ",
+              "dataSource": "SqlServer localhost ContosoDW 2"
             }
           }
         ],
         "annotations": [
           {
             "name": "_TM_ExtProp_QueryDefinition",
-            "value": " \t\t\t\tSELECT [Sheet1$].*   FROM [Sheet1$] "
+            "value": " SELECT [dbo].[DimEmployee].* FROM [dbo].[DimEmployee] "
           },
           {
             "name": "_TM_ExtProp_DbTableName",
-            "value": "Sheet1$"
+            "value": "DimEmployee"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
           }
         ]
       }
